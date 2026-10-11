@@ -2,55 +2,55 @@
 
 # NEUROX
 
-### A MEME WITH A BRAIN.
+### EXPERIMENTAL AI SYSTEMS
 
-**Crypto-native culture meets experimental artificial intelligence.**
+**Research-driven development of accessible AI interfaces and inference workflows.**
 
 [![Status](https://img.shields.io/badge/status-early%20development-202020?style=flat-square)](ROADMAP.md)
 [![Architecture](https://img.shields.io/badge/architecture-documented-353535?style=flat-square)](ARCHITECTURE.md)
 [![Roadmap](https://img.shields.io/badge/roadmap-public-353535?style=flat-square)](ROADMAP.md)
 
-**[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Project status](#development-status) · [Community](#community--token)**
+**[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Development status](#development-status)**
 
 </div>
 
 ---
 
-## Intelligence is the experiment. Culture is the catalyst.
+## About NEUROX
 
-NEUROX is an experimental project exploring how AI interfaces, browser-based inference, and crypto-native experiences can come together.
+NEUROX is an experimental AI software project exploring browser-based inference, modular application architecture, and transparent development practices.
 
-The ambition is simple: **build in public, document what works, and make progress inspectable.**
+Our approach is to **build, test, document, and publish verifiable results**. This repository serves as the technical home for project documentation and future reviewed releases.
 
-This repository is the technical home of the project—not a substitute for working software, reproducible results, or independent verification.
-
-## Explore NEUROX
+## Project areas
 
 | Area | Focus | Documentation |
 | --- | --- | --- |
-| **NEUROX CORE** | AI experiments and inference architecture | [Architecture](ARCHITECTURE.md) |
-| **NEUROX DEVELOPMENT** | Milestones and public progress | [Roadmap](ROADMAP.md) |
-| **NEUROX COMMUNITY** | Discussion and crypto-native culture | [Community & token](#community--token) |
+| **AI inference** | Model-independent inference interfaces and runtime evaluation | [Architecture](ARCHITECTURE.md) |
+| **Web application** | Accessible interfaces for AI experiments | [Architecture](ARCHITECTURE.md) |
+| **Engineering** | Testing, reproducibility, and release milestones | [Roadmap](ROADMAP.md) |
 
 ## System concept
 
 ```text
-                     N E U R O X
+                       NEUROX
                           |
                     Web Interface
                           |
+                 Inference Adapter
+                          |
               +-----------+-----------+
               |                       |
-       AI Inference Layer       Optional Integrations
-              |                       |
-       Browser / API*         Public Data / Wallet*
+        Browser Runtime*         Remote API*
+                          |
+                 Data Adapters*
 ```
 
-*The diagram represents a proposed modular architecture. Asterisks indicate possible integration paths, not confirmed deployments.*
+*Conceptual architecture only. Components and integrations shown here are not claims of deployed functionality.*
 
-**Design priorities:** modularity · transparency · reproducibility · explicit user consent.
+**Engineering priorities:** modularity · security · transparency · reproducibility.
 
-Read the [architecture outline](ARCHITECTURE.md) for proposed components, engineering principles, and verification requirements.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the design outline and verification criteria.
 
 ## Development status
 
@@ -65,35 +65,23 @@ Read the [architecture outline](ARCHITECTURE.md) for proposed components, engine
 | Verified source-code release | Not yet published |
 | Reproducible demo and benchmarks | Not yet published |
 
-We deliberately distinguish **published documentation** from **verified implementation**. Model size, training methods, performance, and autonomy are not claimed in this README.
+We distinguish **published documentation** from **verified implementation**. This README makes no unverified claims about model size, training methods, performance, or autonomy.
 
-Track planned work and checked milestones in the [public roadmap](ROADMAP.md).
+Follow the [public roadmap](ROADMAP.md) for development priorities.
 
-## Community & token
+## Next steps
 
-**$NEUROX — A Meme With a Brain.**
-
-The token is part of the project's crypto-native identity and community narrative. Token contract details and official community links will be added here **only after verification**.
-
-The existence of a token does not imply that AI functionality is operational, that token ownership grants technical access, or that development milestones are guaranteed.
-
-## What comes next?
-
-1. Document and verify the current prototype's actual capabilities.
-2. Prepare a reproducible demonstration and environment instructions.
+1. Document the current prototype's verified capabilities and limitations.
+2. Prepare reproducible setup and demonstration instructions.
 3. Publish reviewed code and measured results where appropriate.
-4. Open contribution pathways as the technical foundation matures.
-
-For the latest scope and priorities, see [ROADMAP.md](ROADMAP.md).
+4. Establish contribution and issue-reporting guidelines.
 
 ---
 
 <div align="center">
 
-### DON'T TRUST THE NARRATIVE. INSPECT THE CODE.
+**NEUROX · Experimental AI Development**
 
-**NEUROX — A Meme With a Brain.**
-
-<sub>Experimental project. No guarantees of token utility, financial returns, or future feature delivery.</sub>
+<sub>Technical documentation and project progress are published as they are verified.</sub>
 
 </div>
