@@ -32,7 +32,7 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0c1420;padding:14px;
 <p id="status" role="status">Awaiting model assets.</p>
 <pre id="output" aria-live="polite"></pre>
 </main>
-<p><small>Compatibility: int64 input_ids; optional attention_mask; logits output. Tokenizer requires matching tiktoken byte ranks. This generic tool does not infer model-specific chat formatting, position IDs, or context requirements. Outputs may be meaningless without the correct model-specific prompt template.</small></p>
+<p><small>Compatibility: int64 input_ids; optional attention_mask; logits output. Tokenizer requires matching tiktoken byte ranks. The default prompt framing uses BOS / user_start / user_end / assistant_start where present. This may differ from the model's actual training format, position IDs, or context requirements. Outputs may be meaningless without the correct model-specific prompt template.</small></p>
 <script type="module">
 import {BpeTokenizer} from '../src/bpe-tokenizer.mjs';
 import {createOnnxAdapter} from '../src/onnx-adapter.mjs';
@@ -51,7 +51,11 @@ el('run').onclick=async()=>{
     const special=config.special_tokens||{};
     const bos=special['<|bos|>'];
     const end=special['<|assistant_end|>'];
-    const prefixTokens=Number.isInteger(bos)?[bos]:[];
+    const userStart=special['<|user_start|>'];
+    const userEnd=special['<|user_end|>'];
+    const assistantStart=special['<|assistant_start|>'];
+    const prefixTokens=[bos,userStart].filter(Number.isInteger);
+    const suffixTokens=[userEnd,assistantStart].filter(Number.isInteger);
     const stopTokenIds=Number.isInteger(end)?[end]:[];
     el('status').textContent='Loading ONNX Runtime...';
     const CDN='https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/';
@@ -61,7 +65,7 @@ el('run').onclick=async()=>{
     adapter=await createOnnxAdapter({ort,modelUrl:new Uint8Array(await el('model').files[0].arrayBuffer())});
     el('status').textContent='Generating...';
     const result=await generateTokens({
-      adapter,tokenizer,prompt:el('prompt').value,prefixTokens,stopTokenIds,
+      adapter,tokenizer,prompt:el('prompt').value,prefixTokens,suffixTokens,stopTokenIds,
       maxNewTokens:Number(el('limit').value),contextLength:Number(el('context').value),
       sampling:{temperature:Number(el('temperature').value),topK:30,topP:0.9},
       signal:controller.signal,
