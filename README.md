@@ -10,7 +10,7 @@
 [![Architecture](https://img.shields.io/badge/architecture-documented-353535?style=flat-square)](ARCHITECTURE.md)
 [![Roadmap](https://img.shields.io/badge/roadmap-public-353535?style=flat-square)](ROADMAP.md)
 
-**[Architecture](ARCHITECTURE.md) · [Inference modules](docs/INFERENCE.md) · [Roadmap](ROADMAP.md) · [Development status](#development-status)**
+**[Architecture](ARCHITECTURE.md) · [Inference modules](docs/INFERENCE.md) · [Browser ONNX check](examples/onnx-smoke-test.html) · [Roadmap](ROADMAP.md) · [Development status](#development-status)**
 
 </div>
 
@@ -63,7 +63,8 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the design outline and verification c
 | Conceptual architecture documentation | Complete |
 | Public roadmap | Complete |
 | Sampling, ONNX adapter, and generation loop source | Published; unit-tested with a mocked ONNX runtime |
-| Real-model browser demo and benchmarks | Not yet published |
+| Browser ONNX compatibility check | Source published; real-model validation pending |
+| Real-model text generation and benchmarks | Not yet verified |
 
 The [inference modules](docs/INFERENCE.md) include source, unit tests, and a GitHub Actions test workflow. The ONNX adapter has **not** been validated against real model weights. We distinguish **published documentation** from **verified implementation**. This README makes no unverified claims about model size, training methods, performance, or autonomy.
 
