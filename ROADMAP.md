@@ -1,6 +1,6 @@
 # NEUROX Roadmap
 
-NEUROX is an experimental AI software project. This roadmap outlines development priorities, not guaranteed features or delivery dates.
+NEUROX is a crypto-focused language model project. This roadmap outlines development priorities, not guaranteed features or delivery dates.
 
 ## Phase 01 — Foundation
 **Status: In progress**
@@ -8,24 +8,35 @@ NEUROX is an experimental AI software project. This roadmap outlines development
 - [x] Establish the public `neurox-core` repository
 - [x] Publish initial project overview
 - [x] Publish a conceptual architecture outline
-- [ ] Document the scope and limitations of the current prototype
-- [ ] Define reproducible setup and testing instructions
+- [x] Document the scope and limitations of the current V4 prototype
+- [x] Define reproducible setup instructions for the V4 browser prototype
 - [x] Establish a transparent changelog and contribution guidelines
 
 **Milestone:** A public technical foundation that anyone can inspect.
 
 ## Phase 02 — Verifiable Demonstration
-**Status: Planned**
+**Status: In progress**
 
-- [ ] Publish a working demonstration link after verification
+- [x] Publish the source of the user-reported working V4 browser demonstration (without staging-domain dependency)
 - [ ] Document supported environments and dependencies
 - [ ] Add reproducible inference or application tests
 - [ ] Publish known limitations and performance measurements with methodology
-- [ ] Release reviewed source code where licensing and security permit
+- [x] Publish V4 browser inference and tokenizer source
+- [ ] Independently benchmark V4 inference and crypto-domain response quality
 
 **Milestone:** A demonstrable system with claims backed by evidence.
 
-## Phase 03 — Modular Integrations
+## Phase 03 — Crypto-Domain Training and Evaluation
+**Status: Planned**
+
+- [x] Publish a crypto-domain evaluation protocol
+- [ ] Record V4 baseline outputs and quality scores
+- [ ] Curate licensed, provenance-tracked crypto-domain training data
+- [ ] Fine-tune a candidate V5 and compare against V4 on held-out prompts
+
+**Milestone:** Measured improvements in crypto-domain knowledge, not just a new interface.
+
+## Phase 04 — Modular Integrations
 **Status: Exploratory**
 
 - [ ] Evaluate supported inference runtimes and external API interfaces
@@ -35,7 +46,7 @@ NEUROX is an experimental AI software project. This roadmap outlines development
 
 **Milestone:** Useful integrations with reproducible behavior and clear boundaries.
 
-## Phase 04 — Community and Open Development
+## Phase 05 — Community and Open Development
 **Status: Planned**
 
 - [x] Publish contributor guidance and issue templates
