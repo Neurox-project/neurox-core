@@ -10,7 +10,7 @@ NEUROX is an experimental AI software project. This roadmap outlines development
 - [x] Publish a conceptual architecture outline
 - [ ] Document the scope and limitations of the current prototype
 - [ ] Define reproducible setup and testing instructions
-- [ ] Establish a transparent changelog and contribution guidelines
+- [x] Establish a transparent changelog and contribution guidelines
 
 **Milestone:** A public technical foundation that anyone can inspect.
 
@@ -38,7 +38,7 @@ NEUROX is an experimental AI software project. This roadmap outlines development
 ## Phase 04 — Community and Open Development
 **Status: Planned**
 
-- [ ] Publish contributor guidance and issue templates
+- [x] Publish contributor guidance and issue templates
 - [ ] Track proposed features and bugs publicly
 - [ ] Share development notes and verified releases
 - [ ] Invite independent feedback and reproducible testing
