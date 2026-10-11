@@ -4,7 +4,7 @@
 
 ## Overview
 
-NEUROX is an experimental AI software project. The architecture aims to separate the web interface, inference layer, and data adapters so that each component can be developed and evaluated independently.
+NEUROX is a crypto-focused language model project. The architecture aims to separate the web interface, inference layer, and data adapters so that each component can be developed and evaluated independently.
 
 ```text
 User
@@ -65,7 +65,7 @@ Before describing a component as operational, publish:
 
 ## Current Publication Scope
 
-This repository currently provides introductory documentation. It does **not** yet publish verified model weights, source code, benchmarks, training details, or production infrastructure specifications.
+This repository publishes preliminary documentation and small, unit-tested inference utilities. See [Inference modules](docs/INFERENCE.md). It does **not** yet publish verified model weights, a full working model implementation, real-model browser benchmarks, training details, or production infrastructure specifications.
 
 ## Next Steps
 
@@ -73,4 +73,4 @@ As components are verified, replace conceptual sections with implementation deta
 
 ---
 
-**NEUROX · Experimental AI Development**
+**NEUROX · Crypto-Native Language Model**
