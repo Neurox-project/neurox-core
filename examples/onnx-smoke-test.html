@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEUROX | Local ONNX Compatibility Check</title>
+<style>
+:root{color-scheme:dark;font:16px/1.5 system-ui,sans-serif;background:#0c1119;color:#eaf0f6}
+body{max-width:760px;margin:48px auto;padding:0 20px}
+h1{font-size:2rem;letter-spacing:.05em}small,.muted{color:#aab8c7}
+section{background:#141d2a;border:1px solid #2b3a4d;border-radius:12px;padding:20px;margin:20px 0}
+label{display:block;margin:16px 0 6px;font-weight:600}
+input,button{font:inherit;border-radius:7px;padding:10px}
+input[type=text]{width:100%;box-sizing:border-box;background:#0b111a;color:white;border:1px solid #51647b}
+button{background:#c9ef5b;color:#101812;border:0;font-weight:700;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b111a;padding:14px;border-radius:8px}
+</style>
+</head>
+<body>
+<header><small>NEUROX / MODEL VALIDATION</small><h1>Local ONNX Compatibility Check</h1></header>
+<p class="muted">Developer tool for inspecting a compatible ONNX model. No tokenizer or model weights are bundled. The selected model stays in this browser tab; loading ONNX Runtime requires network access to a CDN.</p>
+<section>
+<label for="model">Select local ONNX file</label>
+<input id="model" type="file" accept=".onnx,application/octet-stream">
+<label for="ids">Input token IDs (comma-separated, from your model's tokenizer)</label>
+<input id="ids" type="text" placeholder="e.g. 1, 25, 42" autocomplete="off">
+<p><button id="run" type="button">LOAD MODEL &amp; RUN ONE STEP</button></p>
+<p id="status" role="status">Waiting for model file.</p>
+<pre id="output" aria-live="polite">No output yet.</pre>
+</section>
+<p class="muted">Expected model contract: int64 input_ids [1, sequence], optional int64 attention_mask, and logits output [1, sequence, vocabulary] or [1, vocabulary]. Models requiring additional inputs, external weights, or different tensor names are not supported by this check. This is not a text chat or a training demonstration.</p>
+<script type="module">
+import {createOnnxAdapter} from '../src/onnx-adapter.mjs';
+import {sampleToken} from '../src/sampling.mjs';
+const fileEl=document.querySelector('#model');
+const idsEl=document.querySelector('#ids');
+const button=document.querySelector('#run');
+const status=document.querySelector('#status');
+const output=document.querySelector('#output');
+button.addEventListener('click',async()=>{
+  if(!fileEl.files?.[0]){status.textContent='Select an ONNX file first.';return;}
+  const raw=idsEl.value.trim().split(',').map(x=>x.trim());
+  if(!raw.length||raw.some(x=>!/^\d+$/.test(x)||!Number.isSafeInteger(Number(x)))){
+    status.textContent='Enter valid nonnegative integer token IDs separated by commas.';return;
+  }
+  button.disabled=true;output.textContent='Running...';
+  let adapter;
+  try{
+    status.textContent='Loading ONNX Runtime Web (WASM)...';
+    const CDN='https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/';
+    const ort=await import(CDN+'ort.min.mjs');
+    ort.env.wasm.wasmPaths=CDN;
+    ort.env.wasm.numThreads=1;
+    status.textContent='Reading local model and initializing session...';
+    const bytes=new Uint8Array(await fileEl.files[0].arrayBuffer());
+    adapter=await createOnnxAdapter({ort,modelUrl:bytes});
+    status.textContent='Running one inference step...';
+    const logits=await adapter.inferLastLogits(raw.map(Number));
+    const top=Array.from(logits.keys()).sort((a,b)=>logits[b]-logits[a]||a-b).slice(0,5);
+    const greedy=sampleToken(logits,{temperature:0});
+    output.textContent=JSON.stringify({vocabularySize:logits.length,greedyTokenId:greedy,top5:top.map(id=>({id,logit:logits[id]})),inputNames:adapter.inputNames,outputNames:adapter.outputNames},null,2);
+    status.textContent='One inference step completed. This does not validate text generation.';
+  }catch(error){status.textContent='Error: '+(error?.message||String(error));output.textContent='Check model inputs, outputs, WASM compatibility and browser console.';}
+  finally{if(adapter)await adapter.dispose().catch(()=>{});button.disabled=false;}
+});
+</script>
+</body>
+</html>
