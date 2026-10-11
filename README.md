@@ -2,9 +2,9 @@
 
 # NEUROX
 
-### EXPERIMENTAL AI SYSTEMS
+### CRYPTO-NATIVE LANGUAGE MODEL
 
-**Research-driven development of accessible AI interfaces and inference workflows.**
+**An evolving AI language model focused on cryptocurrency, blockchain, DeFi, and Web3.**
 
 [![Status](https://img.shields.io/badge/status-early%20development-202020?style=flat-square)](ROADMAP.md)
 [![Architecture](https://img.shields.io/badge/architecture-documented-353535?style=flat-square)](ARCHITECTURE.md)
@@ -18,16 +18,16 @@
 
 ## About NEUROX
 
-NEUROX is an experimental AI software project exploring browser-based inference, modular application architecture, and transparent development practices.
+NEUROX is a crypto-focused language model project. Its development direction centers on cryptocurrency, blockchain, DeFi, and Web3 knowledge, with browser-based inference and transparent technical documentation. Domain-specific training and its results will be documented as they are verified.
 
-Our approach is to **build, test, document, and publish verifiable results**. This repository serves as the technical home for project documentation and future reviewed releases.
+Our approach is to **develop the model, evaluate its capabilities, and publish verifiable results**. This repository serves as the technical home for project documentation and future reviewed releases.
 
 ## Project areas
 
 | Area | Focus | Documentation |
 | --- | --- | --- |
-| **AI inference** | Model-independent inference interfaces and runtime evaluation | [Architecture](ARCHITECTURE.md) |
-| **Web application** | Accessible interfaces for AI experiments | [Architecture](ARCHITECTURE.md) |
+| **Language model** | Model development, inference, and evaluation | [Architecture](ARCHITECTURE.md) |
+| **Web application** | Browser-based model interaction | [Architecture](ARCHITECTURE.md) |
 | **Engineering** | Testing, reproducibility, and release milestones | [Roadmap](ROADMAP.md) |
 
 ## System concept
@@ -80,7 +80,7 @@ Follow the [public roadmap](ROADMAP.md) for development priorities.
 
 <div align="center">
 
-**NEUROX · Experimental AI Development**
+**NEUROX · Crypto-Native Language Model**
 
 <sub>Technical documentation and project progress are published as they are verified.</sub>
 
