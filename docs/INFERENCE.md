@@ -86,6 +86,14 @@ The caller supplies the tokenizer's `encode(text)` and `decode(tokenIds)` method
 
 The historical browser prototype references a model file and separate tokenizer assets, but the model weights and tokenizer implementation have not been located as complete, publishable assets. Before calling the browser demo operational, validate the model's actual input/output names and shapes, tokenizer special tokens, compatible runtime version, and a real text-generation test.
 
+## Browser-local compatibility check
+
+The repository includes [examples/onnx-smoke-test.html](../examples/onnx-smoke-test.html), a developer page that loads a local ONNX file in the browser and performs **one inference step** using numeric token IDs supplied by the developer.
+
+From the repository root, start a static HTTP server (for example, `python3 -m http.server 8000`) and open `/examples/onnx-smoke-test.html`. Select a compatible `.onnx` file and enter token IDs produced by its matching tokenizer. The page downloads ONNX Runtime Web 1.22.0 from jsDelivr, but does not upload the selected model to a server. No tokenizer, model weights, or training data are bundled.
+
+**Important:** This is an unverified integration harness until tested with real compatible NEUROX weights. A successful single-step run does not establish correct text generation, model quality, or domain-specific training.
+
 ## Limitations
 
 - No tokenizer, training pipeline, weights, or model architecture are published here.
