@@ -63,3 +63,14 @@ test('streams generated tokens via callback', async () => {
   assert.deepEqual(events[0].generated, [1]);
   assert.equal(result.text, '1');
 });
+
+test('inserts chat suffix tokens before autoregressive decoding', async () => {
+  const calls = [];
+  const adapter = { async inferLastLogits(ids) { calls.push([...ids]); return [0, 5]; } };
+  await generateTokens({
+    adapter, tokenizer, prompt: 'hello',
+    prefixTokens: [10, 11], suffixTokens: [12, 13],
+    maxNewTokens: 1, sampling: { temperature: 0 }
+  });
+  assert.deepEqual(calls[0], [10, 11, 1, 12, 13]);
+});
