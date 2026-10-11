@@ -1,10 +1,11 @@
 # Browser inference building blocks
 
-NEUROX publishes three small, dependency-free JavaScript modules:
+NEUROX publishes four small, dependency-free JavaScript modules:
 
 - `src/sampling.mjs`: greedy decoding, temperature, Top-K, Top-P, and repetition penalty.
 - `src/onnx-adapter.mjs`: a minimal ONNX Runtime Web session wrapper for a **specific** decoder contract.
 - `src/generate.mjs`: an autoregressive generation loop with streaming callbacks, stop tokens, and cancellation.
+- `src/bpe-tokenizer.mjs`: a byte-level BPE tokenizer compatible with a matching tokenizer config and tiktoken rank file.
 
 ## Tests
 
@@ -93,6 +94,12 @@ The repository includes [examples/onnx-smoke-test.html](../examples/onnx-smoke-t
 From the repository root, start a static HTTP server (for example, `python3 -m http.server 8000`) and open `/examples/onnx-smoke-test.html`. Select a compatible `.onnx` file and enter token IDs produced by its matching tokenizer. The page downloads ONNX Runtime Web 1.22.0 from jsDelivr, but does not upload the selected model to a server. No tokenizer, model weights, or training data are bundled.
 
 **Important:** This is an unverified integration harness until tested with real compatible NEUROX weights. A successful single-step run does not establish correct text generation, model quality, or domain-specific training.
+
+## Local browser text-generation harness
+
+[examples/browser-generation.html](../examples/browser-generation.html) connects the tokenizer, ONNX adapter, sampler, and generation loop. Serve the repository over HTTP (for example, `python3 -m http.server 8000`) and open `/examples/browser-generation.html`. Select **three matching files**: an ONNX model, `tokenizer.json`, and `tokenizer.tiktoken`.
+
+This integration page is **not yet validated with actual NEUROX weights**. The available historical prototype included a tokenizer configuration and tokenizer source but did not include the full rank file or ONNX weights. The page supplies only an optional BOS token and end-of-answer stop token; a model-specific prompt/chat template may be required for coherent results. Never treat a successfully loaded session as proof of trained crypto knowledge.
 
 ## Limitations
 
