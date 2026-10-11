@@ -62,10 +62,10 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the design outline and verification c
 | Project overview | Complete |
 | Conceptual architecture documentation | Complete |
 | Public roadmap | Complete |
-| Standalone sampling and ONNX adapter source | Published; unit-tested with a mocked ONNX runtime |
+| Sampling, ONNX adapter, and generation loop source | Published; unit-tested with a mocked ONNX runtime |
 | Real-model browser demo and benchmarks | Not yet published |
 
-The [inference modules](docs/INFERENCE.md) include source and local unit tests. The ONNX adapter has **not** been validated against real model weights. We distinguish **published documentation** from **verified implementation**. This README makes no unverified claims about model size, training methods, performance, or autonomy.
+The [inference modules](docs/INFERENCE.md) include source, unit tests, and a GitHub Actions test workflow. The ONNX adapter has **not** been validated against real model weights. We distinguish **published documentation** from **verified implementation**. This README makes no unverified claims about model size, training methods, performance, or autonomy.
 
 Follow the [public roadmap](ROADMAP.md) for development priorities.
 
@@ -73,7 +73,7 @@ Follow the [public roadmap](ROADMAP.md) for development priorities.
 
 1. Document the current prototype's verified capabilities and limitations.
 2. Prepare reproducible setup and demonstration instructions.
-3. Publish reviewed code and measured results where appropriate.
+3. Validate a complete ONNX model and tokenizer in a real browser; publish measured results.
 4. Establish contribution and issue-reporting guidelines.
 
 ---
