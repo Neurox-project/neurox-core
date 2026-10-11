@@ -5,7 +5,7 @@
  */
 export async function createOnnxAdapter({ ort, modelUrl, executionProviders = ['wasm'] }) {
   if (!ort?.InferenceSession?.create || typeof ort.Tensor !== 'function') throw new TypeError('ONNX Runtime is required');
-  if (typeof modelUrl !== 'string' || !modelUrl.trim()) throw new TypeError('modelUrl is required');
+  if (!((typeof modelUrl === 'string' && modelUrl.trim()) || (modelUrl instanceof Uint8Array && modelUrl.length > 0))) throw new TypeError('modelUrl must be a nonempty URL or Uint8Array');
   const session = await ort.InferenceSession.create(modelUrl, { executionProviders });
   if (!session.inputNames?.includes('input_ids')) throw new Error('Model must expose input_ids');
   if (!session.outputNames?.includes('logits')) throw new Error('Model must expose logits');
