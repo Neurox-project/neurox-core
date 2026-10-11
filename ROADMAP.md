@@ -1,8 +1,6 @@
 # NEUROX Roadmap
 
-**A Meme With a Brain.**
-
-NEUROX is an experimental crypto-native AI initiative. This roadmap outlines development priorities, not guaranteed features or delivery dates.
+NEUROX is an experimental AI software project. This roadmap outlines development priorities, not guaranteed features or delivery dates.
 
 ## Phase 01 — Foundation
 **Status: In progress**
@@ -27,15 +25,15 @@ NEUROX is an experimental crypto-native AI initiative. This roadmap outlines dev
 
 **Milestone:** A demonstrable system with claims backed by evidence.
 
-## Phase 03 — Crypto-Native Interfaces
+## Phase 03 — Modular Integrations
 **Status: Exploratory**
 
-- [ ] Evaluate integrations with permitted public crypto data sources
-- [ ] Define data provenance, update frequency, and error handling
-- [ ] Explore optional wallet connectivity with explicit user consent
-- [ ] Document separation between AI features and token-related functions
+- [ ] Evaluate supported inference runtimes and external API interfaces
+- [ ] Define data provenance, update frequency, and error handling for adapters
+- [ ] Document module boundaries and security assumptions
+- [ ] Test interoperability across supported environments
 
-**Milestone:** Useful integrations with transparent boundaries and security assumptions.
+**Milestone:** Useful integrations with reproducible behavior and clear boundaries.
 
 ## Phase 04 — Community and Open Development
 **Status: Planned**
@@ -45,7 +43,7 @@ NEUROX is an experimental crypto-native AI initiative. This roadmap outlines dev
 - [ ] Share development notes and verified releases
 - [ ] Invite independent feedback and reproducible testing
 
-**Milestone:** An open process where progress can be inspected rather than merely announced.
+**Milestone:** An open process where progress can be inspected.
 
 ---
 
@@ -53,11 +51,9 @@ NEUROX is an experimental crypto-native AI initiative. This roadmap outlines dev
 
 A checked item means the corresponding public artifact has been published or verified. Planned and exploratory items are **not** statements of existing functionality.
 
-Roadmap priorities may change as technical findings emerge. No timeline, token price, investment outcome, or future utility is guaranteed.
+Priorities may change as technical findings emerge.
 
 ## Project Links
 
 - [Repository](https://github.com/Neurox-project/neurox-core)
 - [Architecture](ARCHITECTURE.md)
-
-> Don't trust the narrative. Inspect the code.
