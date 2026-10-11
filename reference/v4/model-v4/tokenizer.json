@@ -1,0 +1,16 @@
+{
+  "pattern": "'(?i:[sdmt]|ll|ve|re)|[^\\r\\n\\p{L}\\p{N}]?+\\p{L}+|\\p{N}{1,2}| ?[^\\s\\p{L}\\p{N}]++[\\r\\n]*|\\s*[\\r\\n]|\\s+(?!\\S)|\\s+",
+  "special_tokens": {
+    "<|bos|>": 16375,
+    "<|user_start|>": 16376,
+    "<|user_end|>": 16377,
+    "<|assistant_start|>": 16378,
+    "<|assistant_end|>": 16379,
+    "<|python_start|>": 16380,
+    "<|python_end|>": 16381,
+    "<|output_start|>": 16382,
+    "<|output_end|>": 16383
+  },
+  "bos_token": "<|bos|>",
+  "vocab_size": 16384
+}
