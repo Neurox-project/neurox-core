@@ -10,7 +10,7 @@
 [![Architecture](https://img.shields.io/badge/architecture-documented-353535?style=flat-square)](ARCHITECTURE.md)
 [![Roadmap](https://img.shields.io/badge/roadmap-public-353535?style=flat-square)](ROADMAP.md)
 
-**[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Development status](#development-status)**
+**[Architecture](ARCHITECTURE.md) · [Inference modules](docs/INFERENCE.md) · [Roadmap](ROADMAP.md) · [Development status](#development-status)**
 
 </div>
 
@@ -54,7 +54,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the design outline and verification c
 
 ## Development status
 
-**Early development — documentation foundation.**
+**Early development — documentation and initial tested inference utilities.**
 
 | Milestone | Status |
 | --- | --- |
@@ -62,10 +62,10 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the design outline and verification c
 | Project overview | Complete |
 | Conceptual architecture documentation | Complete |
 | Public roadmap | Complete |
-| Verified source-code release | Not yet published |
-| Reproducible demo and benchmarks | Not yet published |
+| Standalone sampling and ONNX adapter source | Published; unit-tested with a mocked ONNX runtime |
+| Real-model browser demo and benchmarks | Not yet published |
 
-We distinguish **published documentation** from **verified implementation**. This README makes no unverified claims about model size, training methods, performance, or autonomy.
+The [inference modules](docs/INFERENCE.md) include source and local unit tests. The ONNX adapter has **not** been validated against real model weights. We distinguish **published documentation** from **verified implementation**. This README makes no unverified claims about model size, training methods, performance, or autonomy.
 
 Follow the [public roadmap](ROADMAP.md) for development priorities.
 
