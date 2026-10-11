@@ -33,3 +33,13 @@ test('rejects unsupported logits shape',async()=>{
   const adapter=await createOnnxAdapter({ort,modelUrl:'/model.onnx'});
   await assert.rejects(()=>adapter.inferLastLogits([1,2]),/Unsupported/);
 });
+
+test('accepts in-memory ONNX model bytes', async () => {
+  const {ort,calls}=mockOrt();
+  await createOnnxAdapter({ort,modelUrl:new Uint8Array([1,2,3])});
+  assert.deepEqual([...calls[0][0]],[1,2,3]);
+});
+test('rejects empty model bytes', async () => {
+  const {ort}=mockOrt();
+  await assert.rejects(()=>createOnnxAdapter({ort,modelUrl:new Uint8Array()}),TypeError);
+});
