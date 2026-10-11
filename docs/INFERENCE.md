@@ -1,9 +1,10 @@
 # Browser inference building blocks
 
-NEUROX publishes two small, dependency-free JavaScript modules:
+NEUROX publishes three small, dependency-free JavaScript modules:
 
 - `src/sampling.mjs`: greedy decoding, temperature, Top-K, Top-P, and repetition penalty.
 - `src/onnx-adapter.mjs`: a minimal ONNX Runtime Web session wrapper for a **specific** decoder contract.
+- `src/generate.mjs`: an autoregressive generation loop with streaming callbacks, stop tokens, and cancellation.
 
 ## Tests
 
@@ -13,7 +14,7 @@ Requires Node.js 18 or newer. No npm installation is needed for these unit tests
 node --test tests/*.test.mjs
 ```
 
-The ONNX adapter tests use a mocked runtime. They validate tensor construction, output shape handling, and error paths; **they do not demonstrate inference on real model weights**.
+The ONNX adapter and generation tests use mocked model outputs. They validate tensor construction, output shape handling, and error paths; **they do not demonstrate inference on real model weights**.
 
 ## Sampling
 
@@ -59,6 +60,31 @@ try {
 ```
 
 This snippet requires a **compatible actual model**, runtime dependencies, and token IDs produced by that model's tokenizer. The example IDs and URL are placeholders, not an operational NEUROX demo.
+
+## Generation orchestration
+
+```js
+import { generateTokens } from './src/generate.mjs';
+
+// Requires a compatible real adapter and tokenizer implementation.
+const result = await generateTokens({
+  adapter,
+  tokenizer,
+  prompt: 'Explain proof of stake',
+  prefixTokens: [], // model-specific role/BOS tokens, if required
+  stopTokenIds: [], // model-specific end-of-turn IDs
+  maxNewTokens: 48,
+  contextLength: 128,
+  sampling: { temperature: 0.7, topK: 30, topP: 0.9 },
+  onToken: ({ text }) => console.log(text)
+});
+```
+
+The caller supplies the tokenizer's `encode(text)` and `decode(tokenIds)` methods, prompt framing, and actual model files. Without them this example cannot generate meaningful language.
+
+## Next integration milestone
+
+The historical browser prototype references a model file and separate tokenizer assets, but the model weights and tokenizer implementation have not been located as complete, publishable assets. Before calling the browser demo operational, validate the model's actual input/output names and shapes, tokenizer special tokens, compatible runtime version, and a real text-generation test.
 
 ## Limitations
 
