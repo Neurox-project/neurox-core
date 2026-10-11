@@ -25,7 +25,12 @@ export class BpeTokenizer {
       this.tokenBytes[rank]=toBytes(encoded);
     }
     if (!this.ranks.size) throw new Error('Empty tokenizer ranks');
-    this.pattern=/'(?:[sSdDmMtT]|[lL][lL]|[vV][eE]|[rR][eE])|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}{1,2}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]|\s+(?!\S)|\s+/gu;
+    // Adapt Python/PCRE-style tokenizer regex to the JavaScript RegExp dialect.
+    const source = String(config.pattern || "'(?i:[sdmt]|ll|ve|re)|[^\\r\\n\\p{L}\\p{N}]?+\\p{L}+|\\p{N}{1,2}| ?[^\\s\\p{L}\\p{N}]++[\\r\\n]*|\\s*[\\r\\n]|\\s+(?!\\S)|\\s+")
+      .replace("'(?i:[sdmt]|ll|ve|re)", "'(?:[sSdDmMtT]|[lL][lL]|[vV][eE]|[rR][eE])")
+      .replaceAll('?+', '?')
+      .replaceAll('++', '+');
+    this.pattern = new RegExp(source, 'gu');
   }
   encode(text) {
     if (typeof text!=='string') throw new TypeError('Expected text');
