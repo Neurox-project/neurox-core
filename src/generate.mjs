@@ -5,7 +5,7 @@ import { sampleToken } from './sampling.mjs';
  * This orchestration layer is model-agnostic; it does not include weights.
  */
 export async function generateTokens({
-  adapter, tokenizer, prompt, prefixTokens = [], stopTokenIds = [],
+  adapter, tokenizer, prompt, prefixTokens = [], suffixTokens = [], stopTokenIds = [],
   maxNewTokens = 48, contextLength = 128, sampling = {},
   signal, onToken
 }) {
@@ -17,7 +17,8 @@ export async function generateTokens({
   const encoded = await tokenizer.encode(prompt);
   if (!Array.isArray(encoded) || !encoded.every(id => Number.isSafeInteger(id) && id >= 0)) throw new TypeError('Tokenizer must return an array of token IDs');
   if (!Array.isArray(prefixTokens) || !prefixTokens.every(id => Number.isSafeInteger(id) && id >= 0)) throw new TypeError('Invalid prefix tokens');
-  const context = [...prefixTokens, ...encoded];
+  if (!Array.isArray(suffixTokens) || !suffixTokens.every(id => Number.isSafeInteger(id) && id >= 0)) throw new TypeError('Invalid suffix tokens');
+  const context = [...prefixTokens, ...encoded, ...suffixTokens];
   if (context.length === 0) throw new Error('Cannot generate from empty token context');
   const generated = [];
   const stops = new Set(stopTokenIds);
