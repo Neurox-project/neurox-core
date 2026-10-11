@@ -4,7 +4,7 @@
 
 ## Overview
 
-NEUROX is an experimental crypto-native AI project. The architecture is intended to keep the user interface, inference layer, data sources, and optional blockchain integrations separate, so each part can be developed and evaluated independently.
+NEUROX is an experimental AI software project. The architecture aims to separate the web interface, inference layer, and data adapters so that each component can be developed and evaluated independently.
 
 ```text
 User
@@ -18,22 +18,20 @@ Web Interface
   |       |
   |       +--> Remote API (optional)
   |
-  +--> Public Data Adapters (proposed)
-  |
-  +--> Wallet Integration (optional)
+  +--> Data Adapters (proposed)
 ```
 
-This diagram is a **conceptual design**, not a claim that all modules are implemented.
+This is a **conceptual design**, not a claim that every module is implemented.
 
 ## Components
 
 ### 1. Web Interface
 
-The browser interface is intended to provide an accessible entry point for demonstrations, interaction, and project documentation. UI and inference code should be kept modular.
+An accessible entry point for demonstrations, user interaction, and project documentation. UI and inference code should remain modular.
 
 ### 2. AI Inference Layer
 
-A model-independent adapter is proposed to support different inference backends without coupling the UI to a specific model name or provider.
+A model-independent adapter is proposed to support different inference backends without coupling the UI to a specific model or provider.
 
 Possible backends include:
 
@@ -41,29 +39,23 @@ Possible backends include:
 - A separately hosted inference service
 - A third-party AI API
 
-Actual backend availability, compatibility, and performance must be verified before publication.
+Availability, compatibility, and performance must be verified before publication.
 
 ### 3. Data Adapters
 
-Future adapters may ingest public, permitted crypto ecosystem data. Data provenance, licensing, freshness, and reliability should be documented for each integration. No live data ingestion capability is claimed here.
-
-### 4. Wallet and Blockchain Integration
-
-Wallet connectivity and on-chain features, if released, should be isolated from the AI inference layer. Connecting a wallet should not be required merely to inspect public documentation.
-
-Security-sensitive actions must be explicit and user-authorized. Never expose private keys or seed phrases in the application or repository.
+Proposed adapters may support permitted external data sources. Provenance, licensing, freshness, and reliability should be documented for each integration. No live ingestion capability is claimed here.
 
 ## Engineering Principles
 
 - **Verifiability:** Publish reproducible instructions and measured results, not untested performance claims.
-- **Modularity:** Keep frontend, inference, data, and wallet interfaces separate.
+- **Modularity:** Keep interface, inference, and data components separate.
 - **Transparency:** Distinguish implemented features from prototypes and plans.
-- **Security:** Keep secrets server-side and minimize wallet permissions.
+- **Security:** Protect credentials and minimize permissions.
 - **Reproducibility:** Document supported environments, dependencies, and known limitations.
 
 ## Verification Checklist
 
-Before promoting any component as operational, publish:
+Before describing a component as operational, publish:
 
 1. Relevant source code or a clear description of what remains closed.
 2. Setup and execution instructions.
@@ -77,10 +69,8 @@ This repository currently provides introductory documentation. It does **not** y
 
 ## Next Steps
 
-As components are verified, replace conceptual sections with implementation details, diagrams grounded in code, and links to tests.
+As components are verified, replace conceptual sections with implementation details and reproducible tests.
 
 ---
 
-**NEUROX — A Meme With a Brain.**
-
-*Don't trust the narrative. Inspect the code.*
+**NEUROX · Experimental AI Development**
