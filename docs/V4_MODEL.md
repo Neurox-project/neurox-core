@@ -15,11 +15,11 @@ The published ONNX adapter's input and output contract matches the model's decla
 
 ## Local model files
 
-The model weighs over GitHub's 100 MB normal-file limit, so do **not** commit it to this repository. Keep the model and tokenizer assets locally. The browser page accepts them via file inputs.
+The model weighs over GitHub's 100 MB normal-file limit, so do **not** commit it to regular Git. The matching tokenizer config and rank file are now published in [the V4 source directory](../reference/v4/). The preserved V4 browser page expects its model in a local relative directory.
 
-- `queen-v4-int8.onnx`
-- `tokenizer.json`
-- `tokenizer.tiktoken`
+- `reference/v4/model-v4/neurox-v4-int8.onnx` — copy the provided V4 weights under this deployment-neutral filename
+- `reference/v4/model-v4/tokenizer.json`
+- `reference/v4/model-v4/tokenizer.tiktoken`
 
 ## V4 prompt framing
 
@@ -37,14 +37,16 @@ A plausible chat prompt layout is:
 <|bos|><|user_start|>USER_TEXT<|user_end|><|assistant_start|>
 ```
 
-This framing follows the historical browser prototype, but the V4 training prompt format has not been independently verified. The V4 integration page uses these special IDs by default.
+This framing is directly implemented in the user-supplied working V4 browser source. It has not been cross-checked against the original training pipeline.
 
-## Verification still needed
+## Operational status and verification still needed
 
-1. Run the model in an actual browser with ONNX Runtime Web 1.22.0.
-2. Verify tokenizer encoding against the original tokenizer implementation.
-3. Generate a real answer and compare its token IDs to a known-good reference.
-4. Measure memory, initial load time, and tokens/second.
+The project owner reports that V4 is already running successfully in the browser. The provided deployed JavaScript source shows ONNX Runtime Web 1.22.0 loading and real token-by-token inference. This is stronger evidence of a working integration than static ONNX inspection, but independent runtime measurements and model quality results are not yet available.
+
+1. Independently reproduce a known-good V4 response and capture raw output token IDs.
+2. Compare tokenizer behavior and outputs against the preserved working implementation.
+3. Measure memory, load time, and tokens/second on specified hardware.
+4. Score the [crypto-domain evaluation suite](CRYPTO_EVALUATION.md).
 5. Establish whether the V4 training corpus and checkpoints actually support crypto-domain capabilities.
 
 No model weights or private data are published here.
