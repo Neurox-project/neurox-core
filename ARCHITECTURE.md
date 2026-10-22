@@ -1,76 +1,58 @@
-# NEUROX — Architecture
+# NEUROX CORE — V6 Architecture
 
-> **Status:** Preliminary architecture outline. This document describes proposed components and design principles, not a verified inventory of deployed functionality.
+> **Status:** Proposed server-side V6 deployment architecture. Model size and training volume are project-reported; deployed inference/API capability has not been independently verified.
 
-## Overview
+## Model generations
 
-NEUROX is a crypto-focused language model project. The architecture aims to separate the web interface, inference layer, and data adapters so that each component can be developed and evaluated independently.
+| Generation | Role |
+| --- | --- |
+| V6 · 897M parameters · 1.2B training tokens | Current project generation, project-reported specifications |
+| V4 browser ONNX prototype | Historical reference in [reference/v4/](reference/v4/); not V6 |
+
+The training-token figure describes reported training volume, not context length or proven response quality. Public configuration, weights, training logs and benchmarks are pending.
+
+## Intended V6 deployment
 
 ```text
-User
-  |
-  v
-Web Interface
-  |
-  +--> AI Inference Adapter
-  |       |
-  |       +--> Browser Runtime (when supported)
-  |       |
-  |       +--> Remote API (optional)
-  |
-  +--> Data Adapters (proposed)
+Browser / NEUROX CORE UI
+          |
+      HTTPS / TLS
+          |
+    API gateway / proxy
+      | auth / rate limits / CORS
+          |
+   Inference application
+      | prompt formatting / validation
+      | timeout / streaming / generation limits
+          |
+   NEUROX V6 checkpoint
+          |
+  CPU or GPU execution backend
 ```
 
-This is a **conceptual design**, not a claim that every module is implemented.
+This drawing describes an intended system; it does not mean the V6 API is currently running.
 
-## Components
+## Service boundaries
 
-### 1. Web Interface
+**Web interface.** Sends requests to an application-controlled HTTPS API. Must not embed server keys or machine credentials in client-side JavaScript.
 
-An accessible entry point for demonstrations, user interaction, and project documentation. UI and inference code should remain modular.
+**Inference API.** Responsible for input validation, authentication or abuse controls, request quotas, logging policies, safe error messages, timeouts and cancellation. Expose model identity and health independently of text generation.
 
-### 2. AI Inference Layer
+**Model runtime.** Loads a versioned V6 checkpoint and its matching tokenizer/configuration, manages memory and generation limits, and reports measured resource needs. The project should benchmark a CPU baseline before claiming GPU is mandatory or unnecessary.
 
-A model-independent adapter is proposed to support different inference backends without coupling the UI to a specific model or provider.
+**Data adapters.** Future external-market or blockchain feeds must document provenance, freshness, licensing and security boundaries. They are not assumed deployed.
 
-Possible backends include:
+## Publication and verification checklist
 
-- Local inference in a compatible browser runtime
-- A separately hosted inference service
-- A third-party AI API
+1. Publish V6 checkpoint manifest, tensor/parameter totals, tokenizer and config.
+2. State license and provenance constraints for model assets and training data.
+3. Record reproducible runtime versions, sample invocation and hardware.
+4. Publish actual memory, throughput and latency benchmarks.
+5. Run held-out crypto-domain evaluations with raw responses and scoring rules.
+6. Document API contract, authentication, failure modes and operational safeguards.
 
-Availability, compatibility, and performance must be verified before publication.
+## Historical browser implementation
 
-### 3. Data Adapters
+The older V4 browser inference source is preserved for traceability. The [browser test page](https://boficoin.com/core-model/core-model.html) refers to an earlier, smaller ONNX experiment and must not be interpreted as V6 serving.
 
-Proposed adapters may support permitted external data sources. Provenance, licensing, freshness, and reliability should be documented for each integration. No live ingestion capability is claimed here.
-
-## Engineering Principles
-
-- **Verifiability:** Publish reproducible instructions and measured results, not untested performance claims.
-- **Modularity:** Keep interface, inference, and data components separate.
-- **Transparency:** Distinguish implemented features from prototypes and plans.
-- **Security:** Protect credentials and minimize permissions.
-- **Reproducibility:** Document supported environments, dependencies, and known limitations.
-
-## Verification Checklist
-
-Before describing a component as operational, publish:
-
-1. Relevant source code or a clear description of what remains closed.
-2. Setup and execution instructions.
-3. Supported browser, platform, and runtime versions.
-4. A reproducible test or demonstration.
-5. Known limitations and security considerations.
-
-## Current Publication Scope
-
-This repository publishes preliminary documentation and small, unit-tested inference utilities. See [Inference modules](docs/INFERENCE.md). It does **not** yet publish verified model weights, a full working model implementation, real-model browser benchmarks, training details, or production infrastructure specifications.
-
-## Next Steps
-
-As components are verified, replace conceptual sections with implementation details and reproducible tests.
-
----
-
-**NEUROX · Crypto-Native Language Model**
+See [ROADMAP.md](ROADMAP.md) for implementation priorities.
