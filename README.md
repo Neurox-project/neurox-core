@@ -1,91 +1,81 @@
 <div align="center">
 
-# NEUROX
+# NEUROX CORE
+### CRYPTO-NATIVE LANGUAGE MODEL · V6
 
-### CRYPTO-NATIVE LANGUAGE MODEL
+**Building a domain-focused language model for crypto, blockchain, DeFi and Web3.**
 
-**An evolving AI language model focused on cryptocurrency, blockchain, DeFi, and Web3.**
+**V6 · 897M parameters · 1.2B training tokens (project-reported)**
 
-[![Status](https://img.shields.io/badge/status-early%20development-202020?style=flat-square)](ROADMAP.md)
-[![Architecture](https://img.shields.io/badge/architecture-documented-353535?style=flat-square)](ARCHITECTURE.md)
-[![Roadmap](https://img.shields.io/badge/roadmap-public-353535?style=flat-square)](ROADMAP.md)
-
-**[V4 working prototype source](reference/v4/) · [Crypto evaluation](docs/CRYPTO_EVALUATION.md) · [Architecture](ARCHITECTURE.md) · [Inference modules](docs/INFERENCE.md) · [V4 model validation](docs/V4_MODEL.md) · [Roadmap](ROADMAP.md)**
+[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md) · [Evaluation protocol](docs/CRYPTO_EVALUATION.md) · [Historical V4 source](reference/v4/)
 
 </div>
 
 ---
 
-## About NEUROX
+## NEUROX V6
 
-NEUROX is a crypto-focused language model project. Its development direction centers on cryptocurrency, blockchain, DeFi, and Web3 knowledge, with browser-based inference and transparent technical documentation. Domain-specific training and its results will be documented as they are verified.
+NEUROX is an evolving language-model project focusing on blockchain technology, cryptocurrency, digital assets, decentralized finance and Web3. The current development generation is **V6**, superseding the V4 browser prototype documented in this repository.
 
-Our approach is to **develop the model, evaluate its capabilities, and publish verifiable results**. This repository serves as the technical home for project documentation and future reviewed releases.
+| Item | V6 status |
+| --- | --- |
+| Model generation | V6 |
+| Parameter count | 897 million (project-reported) |
+| Training volume | 1.2 billion tokens (project-reported) |
+| Domain | Cryptocurrency, blockchain, DeFi, Web3 |
+| Development | Iterative training and evaluation |
+| Intended deployment | Server-side inference exposed through an API |
+| Public V6 weights and reproducible benchmark | Not yet published here |
+| Hosted V6 API | Planned; not claimed operational |
 
-## Project areas
+Parameter and training-token figures are supplied by the project team. Architecture details, tokenizer configuration, checkpoints, measured accuracy, hardware and throughput will be documented when verifiable artifacts are published. **Training token count is not a performance benchmark.**
 
-| Area | Focus | Documentation |
-| --- | --- | --- |
-| **Language model** | Model development, inference, and evaluation | [Architecture](ARCHITECTURE.md) |
-| **Web application** | Browser-based model interaction | [Architecture](ARCHITECTURE.md) |
-| **Engineering** | Testing, reproducibility, and release milestones | [Roadmap](ROADMAP.md) |
-
-## System concept
+## Interfaces and architecture
 
 ```text
-                       NEUROX
-                          |
-                    Web Interface
-                          |
-                 Inference Adapter
-                          |
-              +-----------+-----------+
-              |                       |
-        Browser Runtime*         Remote API*
-                          |
-                 Data Adapters*
+              NEUROX WEB / CORE
+                       |
+                HTTPS API (planned)
+                       |
+              V6 INFERENCE SERVICE
+                       |
+              NEUROX V6 · 897M
+                       |
+            Training / evaluation
 ```
 
-*Conceptual architecture only. Components and integrations shown here are not claims of deployed functionality.*
+The intended V6 deployment uses a separate inference service rather than executing the 897M-parameter model inside each visitor's browser. The historical smaller browser-based ONNX demonstration is a separate prototype, not a V6 runtime.
 
-**Engineering priorities:** modularity · security · transparency · reproducibility.
+See [ARCHITECTURE.md](ARCHITECTURE.md) for boundaries, security considerations and planned verification.
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for the design outline and verification criteria.
+## Current publication status
 
-## Development status
+- **V6:** current project generation; 897M parameters and 1.2B training tokens reported by the team. Public checkpoints, evaluation outputs and deployment artifacts are pending.
+- **V4:** historical ONNX/browser-inference reference source remains available at [reference/v4/](reference/v4/). It is not the current production model.
+- **Evaluation:** crypto-domain [protocol](docs/CRYPTO_EVALUATION.md) is published; public V6 scores are not yet established.
+- **API:** server-side inference and a web-to-API integration are development priorities, not verified live services.
 
-**V4 browser inference prototype available; crypto-specialized model development remains in progress.**
+## Project links
 
-| Milestone | Status |
-| --- | --- |
-| Public repository | Complete |
-| Project overview | Complete |
-| Conceptual architecture documentation | Complete |
-| Public roadmap | Complete |
-| Sampling, BPE tokenizer, ONNX adapter, and generation loop source | Published; unit-tested with a mocked ONNX runtime |
-| V4 browser ONNX inference source | Published from a user-reported working deployment; independent benchmark pending |
-| Browser ONNX compatibility and text-generation harnesses | Published as separate engineering examples |
-| V4 model graph and tokenizer asset validation | Completed (static inspection) |
-| Real-model text generation | Reported operational in the existing browser deployment; independent benchmark pending |
-| Crypto-domain evaluation | Test protocol published; scoring pending |
+- [NEUROX CORE website](https://boficoin.com/queen.html)
+- [Browser inference experiment](https://boficoin.com/core-model/core-model.html) — separate earlier prototype; not V6
+- [Development roadmap](ROADMAP.md)
+- [Technical documentation](docs/)
 
-The [deployed V4 prototype source](reference/v4/) includes a complete ONNX Runtime Web inference path, chat formatting, a tokenizer and sequential generation. The project owner reports that the deployed V4 model works. That report is distinct from an independently reproduced benchmark, which remains pending. The separate [inference modules](docs/INFERENCE.md) and tests are engineering utilities, not a replacement for the V4 deployment. Training corpus and crypto-domain performance have not been independently verified. The staging host is not the permanent project domain.
+## Next milestones
 
-Follow the [public roadmap](ROADMAP.md) for development priorities.
-
-## Next steps
-
-1. Preserve the operational V4 source and reproduce its inference with the provided model assets.
-2. Benchmark V4 and publish raw crypto-domain evaluation outputs.
-3. Prepare a provenance-tracked training dataset and an independently held-out evaluation set.
-4. Train and compare a candidate V5 before changing the production deployment.
+1. Publish an accurate V6 architecture/configuration and checkpoint provenance.
+2. Implement and validate the dedicated V6 inference service and API.
+3. Connect the web interface to that API, with health checks and error handling.
+4. Publish reproducible V6 quality/latency tests and crypto-domain evaluation results.
+5. Document deployment, model versioning and operational constraints.
 
 ---
 
 <div align="center">
 
-**NEUROX · Crypto-Native Language Model**
+**NEUROX CORE · V6**
 
-<sub>Technical documentation and project progress are published as they are verified.</sub>
+<sub>Project-reported specifications are distinct from independently reproduced results.</sub>
 
 </div>
