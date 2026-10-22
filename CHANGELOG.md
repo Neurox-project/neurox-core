@@ -1,18 +1,18 @@
 # Changelog
 
-All notable verified changes to the public NEUROX repository will be documented here.
+## 2026-10-22 — Documentation aligned to V6
 
-The repository is in an early documentation stage. Dates and version numbers will be added to future releases when appropriate.
+### Updated
+- Set NEUROX CORE **V6** as the current development generation in the repository overview.
+- Record project-reported **897M parameters** and **1.2B training tokens**, explicitly separating those figures from independently verified measurements.
+- Revise deployment architecture toward dedicated server inference with an HTTPS API.
+- Update roadmap to cover V6 checkpoint documentation, inference service, web integration and reproducible evaluations.
+- Mark older V4 browser implementation as historical reference rather than the current model.
 
-## Unreleased
+### Not claimed
+- This documentation update does not ship V6 weights, a V6 server, live API access, or validated V6 performance benchmarks.
 
-### Added
-- Public project overview in `README.md`.
-- Preliminary, explicitly conceptual architecture documentation in `ARCHITECTURE.md`.
-- Public development roadmap in `ROADMAP.md`.
-- Contribution guidelines in `CONTRIBUTING.md`.
-- Issue templates for bug reports and feature proposals.
+## Earlier work
 
-### Notes
-- No verified source-code release, model weights, reproducible demonstration, or benchmark results are published in this repository yet.
-- Roadmap entries marked as planned or exploratory are not released features.
+- Published public project foundation, historical V4 ONNX/browser reference source, inference utilities, tests, technical documentation and crypto evaluation protocol.
+- Prior work remains in repository history and under [reference/v4/](reference/v4/).
