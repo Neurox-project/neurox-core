@@ -7,7 +7,7 @@
 
 **V6 · 897M parameters · 1.2B training tokens (project-reported)**
 
-[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md) · [Evaluation protocol](docs/CRYPTO_EVALUATION.md) · [Historical V4 source](reference/v4/)
+[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md) · [Evaluation protocol](docs/CRYPTO_EVALUATION.md) · [Version comparison](docs/VERSION_COMPARISON.md) · [V4](reference/v4/) · [V5](reference/v5/) · [V6](reference/v6/)
 
 </div>
 
@@ -51,6 +51,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for boundaries, security considerations a
 ## Current publication status
 
 - **V6:** current project generation; 897M parameters and 1.2B training tokens reported by the team. Public checkpoints, evaluation outputs and deployment artifacts are pending.
+- **V5:** separate version record at [reference/v5/](reference/v5/); code and checkpoint evidence still needed to establish the actual V5 architecture and runtime.
 - **V4:** historical ONNX/browser-inference reference source remains available at [reference/v4/](reference/v4/). It is not the current production model.
 - **Evaluation:** crypto-domain [protocol](docs/CRYPTO_EVALUATION.md) is published; public V6 scores are not yet established.
 - **API:** server-side inference and a web-to-API integration are development priorities, not verified live services.
@@ -64,11 +65,12 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for boundaries, security considerations a
 
 ## Next milestones
 
-1. Publish an accurate V6 architecture/configuration and checkpoint provenance.
-2. Implement and validate the dedicated V6 inference service and API.
-3. Connect the web interface to that API, with health checks and error handling.
-4. Publish reproducible V6 quality/latency tests and crypto-domain evaluation results.
-5. Document deployment, model versioning and operational constraints.
+1. Establish V5 and V6 as independently reproducible model versions using real checkpoints, tokenizer/configuration and provenance (see [version comparison](docs/VERSION_COMPARISON.md)).
+2. Publish an accurate V6 architecture/configuration and checkpoint provenance.
+3. Implement and validate the dedicated V6 inference service and API.
+4. Connect the web interface to that API, with health checks and error handling.
+5. Publish reproducible V5/V6 quality/latency tests and crypto-domain evaluation results.
+6. Document deployment, model versioning and operational constraints.
 
 ---
 
