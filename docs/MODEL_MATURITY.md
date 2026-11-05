@@ -1,8 +1,8 @@
-# Model maturity: Queen V6 is a crypto-focused research model
+# Model maturity: NEUROX CORE V6 is a crypto-focused research model
 
-## What Queen V6 is
+## What NEUROX CORE V6 is
 
-Queen V6 is an early-stage language model developed for crypto and blockchain-oriented text. The published release contains a nanochat GPT checkpoint (~896.5M parameters), tokenizer and model metadata at [Crawlnet/queen-v6](https://huggingface.co/Crawlnet/queen-v6). The project's research focus includes blockchains, DeFi, smart contracts, on-chain/market information and related documentation.
+NEUROX CORE V6 is an early-stage language model developed for crypto and blockchain-oriented text. The published release contains a nanochat GPT checkpoint (~896.5M parameters), tokenizer and model metadata at [Crawlnet/queen-v6](https://huggingface.co/Crawlnet/queen-v6). The project's research focus includes blockchains, DeFi, smart contracts, on-chain/market information and related documentation.
 
 The data mix described by the model publisher includes crawled materials as well as processed records and synthetic educational/Q&A materials. **Domain-oriented training does not mean every statement is accurate.**
 
