@@ -28,6 +28,18 @@ NEUROX CORE is a crypto-focused language model project built around crawler-coll
 
 **Earlier docs mentioned a 1.2B-token project figure and described V6 deployment as merely planned.** These statements are superseded by the published model card and the project's November 2026 deployment. Metrics sourced from the model card have not been independently replicated by this repository.
 
+## Research-stage model: why V6 can miss simple questions
+
+**Queen V6 is an early-stage, crypto-focused research language model — not a general-purpose assistant with ChatGPT-level instruction following.** NEUROX concentrates on blockchain concepts, DeFi, tokens, smart contracts, network protocols and related web material. The released checkpoint is part of an iterative training and evaluation effort; its domain focus is not a guarantee of correct answers.
+
+V6 can produce fluent text that is irrelevant to the prompt, especially in casual conversation or requests outside its specialization. For example, a greeting may trigger an unrelated crypto discussion. This is a known model-quality limitation, not proof that the API or website is broken. Responses can also hallucinate, repeat themselves or stop at the generation limit.
+
+**The hosted API serves a particular saved V6 checkpoint.** Using the chat does not mean the model learns from each message or changes its weights in real time. Improvements require deliberate data preparation, training/fine-tuning, evaluation and deployment of a newer checkpoint. The project is developing this technology, but a continuous autonomous training system is not claimed here.
+
+**What to try:** ask concrete questions about blockchain, transaction execution, liquidity pools or smart contracts; treat every answer as experimental and verify claims using primary sources. This model is not suitable for financial decisions.
+
+See [Model maturity and limitations](docs/MODEL_MATURITY.md) for the distinction between crypto pretraining, instruction tuning, serving and future releases.
+
 ## Running and checking the live API
 
 The NEUROX website connects to a self-hosted V6 inference service. It is separate from the older browser-based ONNX experiments.
