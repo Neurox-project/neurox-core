@@ -1,12 +1,12 @@
-# Queen V6 — Python FastAPI reference inference service
+# NEUROX CORE V6 — Python FastAPI reference inference service
 
-This project includes a **real Queen V6 CLI-backed reference server**. It invokes the released [Crawlnet/queen-v6](https://huggingface.co/Crawlnet/queen-v6) chat.py with matching model weights, configuration and tokenizer. There are no canned model answers.
+This project includes a **real NEUROX CORE V6 CLI-backed reference server**. It invokes the released [Crawlnet/queen-v6](https://huggingface.co/Crawlnet/queen-v6) chat.py with matching model weights, configuration and tokenizer. There are no canned model answers.
 
 **This is NOT the optimized production NEUROX API.** Our VPS service already uses a persistent model instance that loads weights on startup. This reference implementation starts a separate Python process and reloads the checkpoint for **every request**. It is slow and memory-intensive; **do not replace the working VPS service** with it. It has not been end-to-end tested here against real checkpoint files.
 
 ## Setup
 
-Use Linux/Python 3.10+, a CPU-compatible PyTorch environment and model dependencies (tiktoken, safetensors, numpy, rustbpe). Download the full published Queen V6 model directory, including chat.py, model.safetensors, config.json and matching tokenizer, into /opt/neurox/models/v6. Clone karpathy/nanochat pinned to commit 92d63d4e8bb4 into /opt/neurox/nanochat. The production VPS already has this environment.
+Use Linux/Python 3.10+, a CPU-compatible PyTorch environment and model dependencies (tiktoken, safetensors, numpy, rustbpe). Download the full published NEUROX CORE V6 model directory, including chat.py, model.safetensors, config.json and matching tokenizer, into /opt/neurox/models/v6. Clone karpathy/nanochat pinned to commit 92d63d4e8bb4 into /opt/neurox/nanochat. The production VPS already has this environment.
 
 Install HTTP framework dependencies:
 
