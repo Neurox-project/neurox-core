@@ -1,58 +1,48 @@
-# NEUROX CORE — V6 Architecture
+# NEUROX CORE — Architecture (V6)
 
-> **Status:** Proposed server-side V6 deployment architecture. Model size and training volume are project-reported; deployed inference/API capability has not been independently verified.
+> **Updated 2026-11-05.** Previously this document described a proposed V6 deployment. The project has now reported a working CPU inference service. Public model artifacts are available on Hugging Face. The complete production API implementation remains outside this GitHub repository; tests in this repository do not independently verify service uptime.
 
-## Model generations
+## Model boundaries
 
-| Generation | Role |
-| --- | --- |
-| V6 · 897M parameters · 1.2B training tokens | Current project generation, project-reported specifications |
-| V4 browser ONNX prototype | Historical reference in [reference/v4/](reference/v4/); not V6 |
+Queen V6 is a ~896.5M-parameter nanochat GPT with depth 20, width 1280, 10 attention heads, 2048-token context and 32768-token vocabulary, per the published [Crawlnet/queen-v6 model card](https://huggingface.co/Crawlnet/queen-v6). Its checkpoint and matching tokenizer are published there. V4 browser inference code in this repo is **historical** and must not be mistaken for V6.
 
-The training-token figure describes reported training volume, not context length or proven response quality. Public configuration, weights, training logs and benchmarks are pending.
+Training data and version metrics should be attributed to the model card; some earlier GitHub project-reported numbers have been superseded by source artifacts.
 
-## Intended V6 deployment
+## Runtime data flow
 
-```text
-Browser / NEUROX CORE UI
-          |
-      HTTPS / TLS
-          |
-    API gateway / proxy
-      | auth / rate limits / CORS
-          |
-   Inference application
-      | prompt formatting / validation
-      | timeout / streaming / generation limits
-          |
-   NEUROX V6 checkpoint
-          |
-  CPU or GPU execution backend
-```
+    Browser UI
+       |
+       | HTTPS request /api/v6/chat
+       v
+    Nginx reverse proxy (CloudPanel)
+       |
+       | localhost only, 127.0.0.1:8000
+       v
+    FastAPI + Uvicorn (one worker)
+       |
+       | payload validation, prompt/history handling
+       v
+    nanochat GPT + V6 model.safetensors + tokenizer
+       |
+       v
+    PyTorch CPU inference -> JSON response
 
-This drawing describes an intended system; it does not mean the V6 API is currently running.
+    Health: GET /api/v6/health
+    Chat:   POST /api/v6/chat
 
-## Service boundaries
+The Python tools in this repo are API clients and measurements, not the server's actual model loader. See [V6 server documentation](docs/V6_SERVER.md).
 
-**Web interface.** Sends requests to an application-controlled HTTPS API. Must not embed server keys or machine credentials in client-side JavaScript.
+## Isolation and security
 
-**Inference API.** Responsible for input validation, authentication or abuse controls, request quotas, logging policies, safe error messages, timeouts and cancellation. Expose model identity and health independently of text generation.
+- Serve TLS at Nginx and keep the Python listener local.
+- Only expose specific API routes; prevent arbitrary PHP source downloads.
+- Apply request body/token caps, per-IP rate limiting, concurrency limits, safe error responses and log retention policy.
+- Keep private keys, passwords and environment variables off GitHub.
+- Move the service away from root and measure memory headroom before increasing workers.
+- Record model revision, runtime dependency versions, latency and hardware for every published benchmark.
 
-**Model runtime.** Loads a versioned V6 checkpoint and its matching tokenizer/configuration, manages memory and generation limits, and reports measured resource needs. The project should benchmark a CPU baseline before claiming GPU is mandatory or unnecessary.
+## Data and evaluation boundaries
 
-**Data adapters.** Future external-market or blockchain feeds must document provenance, freshness, licensing and security boundaries. They are not assumed deployed.
+The model card documents crawler pages, factual market/on-chain record pages, and LLM-generated synthetic study notes and Q&A. The training corpus cannot be described as solely raw browser-crawled material. The model may hallucinate crypto facts; quantitative performance reports require a reproducible test set, prompt template, samples and scoring method.
 
-## Publication and verification checklist
-
-1. Publish V6 checkpoint manifest, tensor/parameter totals, tokenizer and config.
-2. State license and provenance constraints for model assets and training data.
-3. Record reproducible runtime versions, sample invocation and hardware.
-4. Publish actual memory, throughput and latency benchmarks.
-5. Run held-out crypto-domain evaluations with raw responses and scoring rules.
-6. Document API contract, authentication, failure modes and operational safeguards.
-
-## Historical browser implementation
-
-The older V4 browser inference source is preserved for traceability. The [browser test page](https://boficoin.com/core-model/core-model.html) refers to an earlier, smaller ONNX experiment and must not be interpreted as V6 serving.
-
-See [ROADMAP.md](ROADMAP.md) for implementation priorities.
+See [evaluation protocol](docs/CRYPTO_EVALUATION.md), [historical browser utilities](docs/INFERENCE.md) and [V6 server](docs/V6_SERVER.md).

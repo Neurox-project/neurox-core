@@ -1,83 +1,71 @@
 <div align="center">
 
 # NEUROX CORE
-### CRYPTO-NATIVE LANGUAGE MODEL · V6
+### Crypto-native language model · Queen V6
 
-**Building a domain-focused language model for crypto, blockchain, DeFi and Web3.**
+**896.5M-parameter nanochat GPT · real published weights · server-side CPU inference**
 
-**V6 · 897M parameters · 1.2B training tokens (project-reported)**
-
-[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md) · [Evaluation protocol](docs/CRYPTO_EVALUATION.md) · [Version comparison](docs/VERSION_COMPARISON.md) · [V4](reference/v4/) · [V5](reference/v5/) · [V6](reference/v6/)
+[Technical architecture](ARCHITECTURE.md) · [V6 deployment & API](docs/V6_SERVER.md) · [Python client](python/neurox_client.py) · [V6 on Hugging Face](https://huggingface.co/Crawlnet/queen-v6) · [Website](https://www.neuroxcore.com/)
 
 </div>
 
 ---
 
-## NEUROX V6
+## Queen V6
 
-NEUROX is an evolving language-model project focusing on blockchain technology, cryptocurrency, digital assets, decentralized finance and Web3. The current development generation is **V6**, superseding the V4 browser prototype documented in this repository.
+NEUROX CORE is a crypto-focused language model project built around crawler-collected materials and additional processed public records and synthetic study/Q&A data. The released [Queen V6 model](https://huggingface.co/Crawlnet/queen-v6) includes safetensors, tokenizer, configuration, a Python CLI and model-card evaluation. This GitHub repository holds supporting utilities, interface prototypes and documentation. **It does not host the 1.79 GB model checkpoint or the production model loader.**
 
-| Item | V6 status |
+| Property | V6 published specification |
 | --- | --- |
-| Model generation | V6 |
-| Parameter count | 897 million (project-reported) |
-| Training volume | 1.2 billion tokens (project-reported) |
-| Domain | Cryptocurrency, blockchain, DeFi, Web3 |
-| Development | Iterative training and evaluation |
-| Intended deployment | Server-side inference exposed through an API |
-| Public V6 weights and reproducible benchmark | Not yet published here |
-| Hosted V6 API | Planned; not claimed operational |
+| Model | Crawlnet/queen-v6 |
+| Parameters | ~896.5M total / ~435.2M non-embedding |
+| Transformer | nanochat GPT, 20 layers, width 1280, 10 attention heads |
+| Context | 2048 tokens |
+| Vocabulary | 32768 |
+| Pretraining volume | See model card: ~3.309B trained positions; ~774.5M unique positions |
+| Weights and tokenizer | [Hugging Face](https://huggingface.co/Crawlnet/queen-v6/tree/main) |
+| Deployed inference | Project-run FastAPI + Uvicorn / CPU / Nginx proxy |
 
-Parameter and training-token figures are supplied by the project team. Architecture details, tokenizer configuration, checkpoints, measured accuracy, hardware and throughput will be documented when verifiable artifacts are published. **Training token count is not a performance benchmark.**
+**Earlier docs mentioned a 1.2B-token project figure and described V6 deployment as merely planned.** These statements are superseded by the published model card and the project's November 2026 deployment. Metrics sourced from the model card have not been independently replicated by this repository.
 
-## Interfaces and architecture
+## Running and checking the live API
 
-```text
-              NEUROX WEB / CORE
-                       |
-                HTTPS API (planned)
-                       |
-              V6 INFERENCE SERVICE
-                       |
-              NEUROX V6 · 897M
-                       |
-            Training / evaluation
-```
+The NEUROX website connects to a self-hosted V6 inference service. It is separate from the older browser-based ONNX experiments.
 
-The intended V6 deployment uses a separate inference service rather than executing the 897M-parameter model inside each visitor's browser. The historical smaller browser-based ONNX demonstration is a separate prototype, not a V6 runtime.
+    curl -sS https://www.neuroxcore.com/api/v6/health
+    python3 python/neurox_client.py health
+    python3 python/neurox_client.py chat "What is staking?" --max-tokens 32
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for boundaries, security considerations and planned verification.
+The Python client uses only the standard library and can also talk to a local service:
 
-## Current publication status
+    python3 python/neurox_client.py --base-url http://127.0.0.1:8000/ chat "What is Solana?"
 
-- **V6:** current project generation; 897M parameters and 1.2B training tokens reported by the team. Public checkpoints, evaluation outputs and deployment artifacts are pending.
-- **V5:** separate version record at [reference/v5/](reference/v5/); code and checkpoint evidence still needed to establish the actual V5 architecture and runtime.
-- **V4:** historical ONNX/browser-inference reference source remains available at [reference/v4/](reference/v4/). It is not the current production model.
-- **Evaluation:** crypto-domain [protocol](docs/CRYPTO_EVALUATION.md) is published; public V6 scores are not yet established.
-- **API:** server-side inference and a web-to-API integration are development priorities, not verified live services.
+Measure sequential response latency from the inference host:
 
-## Project links
+    python3 python/benchmark_api.py --base-url http://127.0.0.1:8000/ --samples 5 --max-tokens 32
 
-- [NEUROX CORE website](https://boficoin.com/queen.html)
-- [Browser inference experiment](https://boficoin.com/core-model/core-model.html) — separate earlier prototype; not V6
-- [Development roadmap](ROADMAP.md)
-- [Technical documentation](docs/)
+Run offline Python and JavaScript tests:
 
-## Next milestones
+    python3 -m unittest discover -s tests_python -v
+    node --test tests/*.test.mjs
 
-1. Establish V5 and V6 as independently reproducible model versions using real checkpoints, tokenizer/configuration and provenance (see [version comparison](docs/VERSION_COMPARISON.md)).
-2. Publish an accurate V6 architecture/configuration and checkpoint provenance.
-3. Implement and validate the dedicated V6 inference service and API.
-4. Connect the web interface to that API, with health checks and error handling.
-5. Publish reproducible V5/V6 quality/latency tests and crypto-domain evaluation results.
-6. Document deployment, model versioning and operational constraints.
+See [V6 deployment/API documentation](docs/V6_SERVER.md) for the architecture, requests, setup boundaries, testing and security limitations. The Python client **calls the deployed API**; model generation itself still uses the published Queen V6 checkpoint and nanochat.
 
----
+## Repository map
 
-<div align="center">
+| Path | Purpose |
+| --- | --- |
+| python/neurox_client.py | Standard-library HTTP client for V6 health/chat/history |
+| python/benchmark_api.py | Repeatable sequential API latency measurement |
+| tests_python/ | Mocked offline Python unit tests |
+| scripts/inspect_model_artifacts.py | Offline checkpoint inventory, hashes and safetensors metadata |
+| docs/V6_SERVER.md | Model provenance, CPU deployment, API and operational limits |
+| docs/INFERENCE.md | Historical browser/ONNX utilities (not V6) |
+| src/, tests/ | JavaScript tokenization, sampling and ONNX harness code |
+| reference/v4/, reference/v5/, reference/v6/ | Version records and historical assets |
 
-**NEUROX CORE · V6**
+## Responsible interpretation
 
-<sub>Project-reported specifications are distinct from independently reproduced results.</sub>
+The published model card describes synthetic study material and Q&A in the training mix and warns that the model can invent financial facts, dates, prices or links. Project claims should be backed by reproducible checkpoints and evaluations. No financial advice is provided by the model.
 
-</div>
+[Architecture](ARCHITECTURE.md) · [Roadmap](ROADMAP.md) · [Crypto evaluation](docs/CRYPTO_EVALUATION.md) · [Changelog](CHANGELOG.md)
