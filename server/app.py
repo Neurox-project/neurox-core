@@ -1,4 +1,4 @@
-"""Queen V6 reference FastAPI adapter using the real released chat.py.
+"""NEUROX CORE V6 reference FastAPI adapter using the real released chat.py.
 
 This starts a new subprocess per request, reloading weights each time.
 Not a replacement for the deployed persistent production API.
