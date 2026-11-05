@@ -4,7 +4,7 @@
 
 ## Model boundaries
 
-Queen V6 is a ~896.5M-parameter nanochat GPT with depth 20, width 1280, 10 attention heads, 2048-token context and 32768-token vocabulary, per the published [Crawlnet/queen-v6 model card](https://huggingface.co/Crawlnet/queen-v6). Its checkpoint and matching tokenizer are published there. V4 browser inference code in this repo is **historical** and must not be mistaken for V6.
+NEUROX CORE V6 is a ~896.5M-parameter nanochat GPT with depth 20, width 1280, 10 attention heads, 2048-token context and 32768-token vocabulary, per the published [Crawlnet/queen-v6 model card](https://huggingface.co/Crawlnet/queen-v6). Its checkpoint and matching tokenizer are published there. V4 browser inference code in this repo is **historical** and must not be mistaken for V6.
 
 Training data and version metrics should be attributed to the model card; some earlier GitHub project-reported numbers have been superseded by source artifacts.
 
