@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""NEUROX V6 HTTP client (Python 3.10+, standard library only).
+"""NEUROX CORE V6 HTTP client (Python 3.10+, standard library only).
 
 This talks to a RUNNING inference service; it does not load model weights.
 Set --base-url to the public /api/v6 path or a local http://127.0.0.1:8000.
