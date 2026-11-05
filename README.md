@@ -17,7 +17,7 @@ NEUROX CORE is a crypto-focused language model project built around crawler-coll
 
 | Property | V6 published specification |
 | --- | --- |
-| Model | Crawlnet/queen-v6 |
+| Model | NEUROX CORE V6 |
 | Parameters | ~896.5M total / ~435.2M non-embedding |
 | Transformer | nanochat GPT, 20 layers, width 1280, 10 attention heads |
 | Context | 2048 tokens |
