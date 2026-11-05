@@ -1,4 +1,4 @@
-"""Offline server contract tests; generation is mocked, no weights required."""
+"""NEUROX CORE V6 offline server contract tests; no model weights required."""
 import pathlib
 import sys
 import unittest
