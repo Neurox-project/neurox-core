@@ -16,7 +16,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Python API client unit tests (offline)
+      - name: Install lightweight reference API dependencies
+        run: python -m pip install -r server/requirements.txt
+      - name: Python API client and reference server unit tests (offline)
         run: python -m unittest discover -s tests_python -v
       - name: Compile Python utilities
         run: python -m compileall -q python tests_python scripts
