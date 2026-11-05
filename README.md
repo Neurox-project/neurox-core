@@ -1,7 +1,7 @@
 <div align="center">
 
 # NEUROX CORE
-### Crypto-native language model · Queen V6
+### Crypto-native language model · NEUROX CORE V6
 
 **896.5M-parameter nanochat GPT · real published weights · server-side CPU inference**
 
@@ -11,9 +11,9 @@
 
 ---
 
-## Queen V6
+## NEUROX CORE V6
 
-NEUROX CORE is a crypto-focused language model project built around crawler-collected materials and additional processed public records and synthetic study/Q&A data. The released [Queen V6 model](https://huggingface.co/Crawlnet/queen-v6) includes safetensors, tokenizer, configuration, a Python CLI and model-card evaluation. This GitHub repository holds supporting utilities, interface prototypes and documentation. **It does not host the 1.79 GB model checkpoint or the production model loader.**
+NEUROX CORE is a crypto-focused language model project built around crawler-collected materials and additional processed public records and synthetic study/Q&A data. The released [NEUROX CORE V6 model](https://huggingface.co/Crawlnet/queen-v6) includes safetensors, tokenizer, configuration, a Python CLI and model-card evaluation. This GitHub repository holds supporting utilities, interface prototypes and documentation. **It does not host the 1.79 GB model checkpoint or the production model loader.**
 
 | Property | V6 published specification |
 | --- | --- |
@@ -30,7 +30,7 @@ NEUROX CORE is a crypto-focused language model project built around crawler-coll
 
 ## Research-stage model: why V6 can miss simple questions
 
-**Queen V6 is an early-stage, crypto-focused research language model — not a general-purpose assistant with ChatGPT-level instruction following.** NEUROX concentrates on blockchain concepts, DeFi, tokens, smart contracts, network protocols and related web material. The released checkpoint is part of an iterative training and evaluation effort; its domain focus is not a guarantee of correct answers.
+**NEUROX CORE V6 is an early-stage, crypto-focused research language model — not a general-purpose assistant with ChatGPT-level instruction following.** NEUROX concentrates on blockchain concepts, DeFi, tokens, smart contracts, network protocols and related web material. The released checkpoint is part of an iterative training and evaluation effort; its domain focus is not a guarantee of correct answers.
 
 V6 can produce fluent text that is irrelevant to the prompt, especially in casual conversation or requests outside its specialization. For example, a greeting may trigger an unrelated crypto discussion. This is a known model-quality limitation, not proof that the API or website is broken. Responses can also hallucinate, repeat themselves or stop at the generation limit.
 
@@ -61,7 +61,7 @@ Run offline Python and JavaScript tests:
     python3 -m unittest discover -s tests_python -v
     node --test tests/*.test.mjs
 
-See [V6 deployment/API documentation](docs/V6_SERVER.md) for the architecture, requests, setup boundaries, testing and security limitations. The Python client **calls the deployed API**; model generation itself still uses the published Queen V6 checkpoint and nanochat.
+See [V6 deployment/API documentation](docs/V6_SERVER.md) for the architecture, requests, setup boundaries, testing and security limitations. The Python client **calls the deployed API**; model generation itself still uses the published NEUROX CORE V6 checkpoint and nanochat.
 
 ## Repository map
 
