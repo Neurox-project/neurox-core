@@ -31,7 +31,7 @@ The model repository also publishes config.json, tokenizer.json, tokenizer.tikto
        |
     FastAPI + Uvicorn (single worker)
        |
-    nanochat GPT + Queen v6 tokenizer and safetensors
+    nanochat GPT + NEUROX CORE V6 tokenizer and safetensors
        |
     CPU PyTorch inference
 
