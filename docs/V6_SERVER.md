@@ -2,7 +2,7 @@
 
 ## Published model
 
-The current public model artifact is [Crawlnet/queen-v6](https://huggingface.co/Crawlnet/queen-v6) on Hugging Face. This repository documents and integrates that project but does not duplicate the 1.79 GB checkpoint.
+The current public model artifact is [NEUROX CORE V6 checkpoint](https://huggingface.co/Crawlnet/queen-v6) on Hugging Face. This repository documents and integrates that project but does not duplicate the 1.79 GB checkpoint.
 
 | Field | V6 model card |
 | --- | --- |
