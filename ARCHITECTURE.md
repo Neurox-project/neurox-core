@@ -1,10 +1,10 @@
 # NEUROX CORE — Architecture (V6)
 
-> **Updated 2026-11-05.** Previously this document described a proposed V6 deployment. The project has now reported a working CPU inference service. Public model artifacts are available on Hugging Face. The complete production API implementation remains outside this GitHub repository; tests in this repository do not independently verify service uptime.
+> **Updated 2026-11-05.** Previously this document described a proposed V6 deployment. The project has now reported a working CPU inference service. The model checkpoint and tokenizer are distributed separately from this source repository. The complete production API implementation remains outside this GitHub repository; tests in this repository do not independently verify service uptime.
 
 ## Model boundaries
 
-NEUROX CORE V6 is a ~896.5M-parameter nanochat GPT with depth 20, width 1280, 10 attention heads, 2048-token context and 32768-token vocabulary, per the published [NEUROX CORE V6 model card](https://huggingface.co/Crawlnet/queen-v6). Its checkpoint and matching tokenizer are published there. V4 browser inference code in this repo is **historical** and must not be mistaken for V6.
+NEUROX CORE V6 is a ~896.5M-parameter nanochat GPT with depth 20, width 1280, 10 attention heads, 2048-token context and 32768-token vocabulary, according to the NEUROX CORE V6 release specifications. The matching checkpoint and tokenizer are distributed separately. V4 browser inference code in this repo is **historical** and must not be mistaken for V6.
 
 Training data and version metrics should be attributed to the model card; some earlier GitHub project-reported numbers have been superseded by source artifacts.
 
