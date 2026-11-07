@@ -2,7 +2,7 @@
 
 ## Published model
 
-The current public model artifact is [NEUROX CORE V6 checkpoint](https://huggingface.co/Crawlnet/queen-v6) on Hugging Face. This repository documents and integrates that project but does not duplicate the 1.79 GB checkpoint.
+The NEUROX CORE V6 model checkpoint is distributed separately from this GitHub repository. This repository documents the runtime and API but does not duplicate the approximately 1.79 GB checkpoint.
 
 | Field | V6 model card |
 | --- | --- |
@@ -13,7 +13,7 @@ The current public model artifact is [NEUROX CORE V6 checkpoint](https://hugging
 | Context window | 2048 tokens |
 | Vocabulary | 32768 BPE tokens |
 | nanochat revision | 92d63d4e8bb4 |
-| Model checkpoint | model.safetensors on Hugging Face |
+| Model checkpoint | `model.safetensors` (external release artifact) |
 
 The model repository also publishes config.json, tokenizer.json, tokenizer.tiktoken, chat.py, training summaries and dataset metadata. These are source-published specifications, not measurements independently reproduced here.
 
