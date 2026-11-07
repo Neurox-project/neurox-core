@@ -5,7 +5,7 @@
 
 **896.5M-parameter nanochat GPT · real published weights · server-side CPU inference**
 
-[Technical architecture](ARCHITECTURE.md) · [V6 deployment & API](docs/V6_SERVER.md) · [Python client](python/neurox_client.py) · [V6 on Hugging Face](https://huggingface.co/Crawlnet/queen-v6) · [Website](https://www.neuroxcore.com/)
+[Technical architecture](ARCHITECTURE.md) · [V6 deployment & API](docs/V6_SERVER.md) · [Python client](python/neurox_client.py) · [Website](https://www.neuroxcore.com/)
 
 </div>
 
@@ -13,7 +13,7 @@
 
 ## NEUROX CORE V6
 
-NEUROX CORE is a crypto-focused language model project built around crawler-collected materials and additional processed public records and synthetic study/Q&A data. The released [NEUROX CORE V6 model](https://huggingface.co/Crawlnet/queen-v6) includes safetensors, tokenizer, configuration, a Python CLI and model-card evaluation. This GitHub repository holds supporting utilities, interface prototypes and documentation. **It does not host the 1.79 GB model checkpoint or the production model loader.**
+NEUROX CORE is a crypto-focused language model project built around crawler-collected materials and additional processed public records and synthetic study/Q&A data. The released NEUROX CORE V6 model includes safetensors, tokenizer, configuration, a Python CLI and model-card evaluation. This GitHub repository holds supporting utilities, interface prototypes and documentation. **It does not host the 1.79 GB model checkpoint or the production model loader.**
 
 | Property | V6 published specification |
 | --- | --- |
@@ -23,7 +23,7 @@ NEUROX CORE is a crypto-focused language model project built around crawler-coll
 | Context | 2048 tokens |
 | Vocabulary | 32768 |
 | Pretraining volume | See model card: ~3.309B trained positions; ~774.5M unique positions |
-| Weights and tokenizer | [Hugging Face](https://huggingface.co/Crawlnet/queen-v6/tree/main) |
+| Weights and tokenizer | Released as external model artifacts (not stored in this repository) |
 | Deployed inference | Project-run FastAPI + Uvicorn / CPU / Nginx proxy |
 
 **Earlier docs mentioned a 1.2B-token project figure and described V6 deployment as merely planned.** These statements are superseded by the published model card and the project's November 2026 deployment. Metrics sourced from the model card have not been independently replicated by this repository.
