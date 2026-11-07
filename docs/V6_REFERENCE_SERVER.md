@@ -1,6 +1,6 @@
 # NEUROX CORE V6 — Python FastAPI reference inference service
 
-This project includes a **real NEUROX CORE V6 CLI-backed reference server**. It invokes the released [NEUROX CORE V6 checkpoint](https://huggingface.co/Crawlnet/queen-v6) chat.py with matching model weights, configuration and tokenizer. There are no canned model answers.
+This project includes a **real NEUROX CORE V6 CLI-backed reference server**. It invokes the released NEUROX CORE V6 `chat.py` with matching model weights, configuration and tokenizer. There are no canned model answers.
 
 **This is NOT the optimized production NEUROX API.** Our VPS service already uses a persistent model instance that loads weights on startup. This reference implementation starts a separate Python process and reloads the checkpoint for **every request**. It is slow and memory-intensive; **do not replace the working VPS service** with it. It has not been end-to-end tested here against real checkpoint files.
 
